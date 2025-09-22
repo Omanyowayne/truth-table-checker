@@ -21,7 +21,7 @@
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 logic/
@@ -31,7 +31,7 @@ logic/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repository
 
