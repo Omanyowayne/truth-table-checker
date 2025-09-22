@@ -1,3 +1,5 @@
+Logic Model Checker
+
 A Python implementation of propositional logic with model checking to evaluate logical sentences and test entailment.
 
 Features
