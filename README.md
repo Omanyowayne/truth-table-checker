@@ -1,12 +1,14 @@
-# Logic Model checker
+# Logic Model Checker
 
 **A Python implementation of propositional logic with model checking to evaluate logical sentences and test entailment.**
 
+This repository includes the **core logic engine** (`logic.py`) and **example programs** (`mastermind.py`, `harrison.py`) that demonstrate how to use it in real reasoning problems.
+
 ---
 
-## ✨ Features
+##  Features
 
-* Define logical sentences using:
+* Define logical sentences with:
 
   * **Symbol** (atomic propositions)
   * **Not** (negation)
@@ -14,19 +16,21 @@
   * **Or** (disjunction)
   * **Implication** (if–then)
   * **Biconditional** (if and only if)
-* Evaluate sentences against a **model** (truth assignments).
+* Evaluate logical sentences against truth assignments (models).
 * Perform **entailment checking** using truth table enumeration.
-* Automatically extract all symbols in a logical expression.
-* Pretty-print formulas with logical operators (`¬`, `∧`, `∨`, `=>`, `<=>`).
+* Pretty-print logical formulas with operators (`¬`, `∧`, `∨`, `=>`, `<=>`).
+* Includes **demo programs** showing logic in action.
 
 ---
 
-## Project Structure
+##  Project Structure
 
 ```
-logic/
-│── logic.py         # Core implementation (Sentence classes + model_check)
-│── README.md        # Documentation
+logic-model-checker/
+│── logic.py          # Core logic engine
+│── mastermind.py     # Example: Clue-style deduction puzzle
+│── harrison.py       # Example: Simple reasoning with Harry Potter characters
+│── README.md         # Documentation
 ```
 
 ---
@@ -40,85 +44,106 @@ git clone https://github.com/your-username/logic-model-checker.git
 cd logic-model-checker
 ```
 
-### 2. Run with Python
+### 2. Install dependencies
 
-This project requires **Python 3.7+**.
-You can test it directly in the Python REPL or create your own script.
+```bash
+pip install termcolor
+```
+
+### 3. Run the examples
+
+```bash
+python mastermind.py
+python harrison.py
+```
 
 ---
 
-## Usage Examples
+##  Usage
 
-### Example 1: Defining Symbols
+### Example 1: Core Logic (from `logic.py`)
 
 ```python
 from logic import Symbol, Not, And, Or, Implication, Biconditional, model_check
 
-# Define propositional symbols
 P = Symbol("P")
 Q = Symbol("Q")
-```
 
-### Example 2: Creating Sentences
-
-```python
-# Logical sentence: (P ∧ Q)
-sentence = And(P, Q)
-print(sentence.formula())   # Output: (P) ∧ (Q)
-```
-
-### Example 3: Evaluating with a Model
-
-```python
-# Model: P = True, Q = False
-model = {"P": True, "Q": False}
-
-print(sentence.evaluate(model))  # Output: False
-```
-
-### Example 4: Model Checking (Entailment)
-
-```python
-# Knowledge base: P => Q
 knowledge = Implication(P, Q)
-
-# Query: ¬P ∨ Q
 query = Or(Not(P), Q)
 
-# Check if KB entails query
 print(model_check(knowledge, query))  # Output: True
 ```
 
 ---
 
-## How It Works
+### Example 2: Clue-Style Puzzle (`mastermind.py`)
 
-The **model checker** works by:
+This script sets up a logic puzzle like the board game *Clue*:
 
-1. Collecting all symbols in the knowledge base and query.
-2. Enumerating all possible truth assignments (models).
-3. Ensuring that **if the knowledge base is true in a model, the query is also true** in that model.
-4. Returning `True` if the query is entailed, otherwise `False`.
+* Exactly one **character**, one **weapon**, and one **room** is correct.
+* Some information is known (cards seen, guesses made).
+* The program uses `model_check` to deduce which facts are definitely true or maybe true.
 
----
+Run it:
 
-## Example Use Cases
+```bash
+python mastermind.py
+```
 
-* Learning **propositional logic** and **truth tables**.
-* Practicing **knowledge representation** (AI/logic courses).
-* Building a base for **AI reasoning systems**.
-
----
-
-## Future Improvements
-
-* Support multiple sentences in the knowledge base.
-* Implement **resolution-based inference**.
-* Add a simple **command-line interface (CLI)** for interactive use.
+Output will highlight facts that are logically **entailed** (`YES` in green) or **possible** (`MAYBE`).
 
 ---
 
-## License
+### Example 3: Reasoning Puzzle (`harrison.py`)
 
-This project is open-source and available under the **MIT License**.
+This script encodes a small knowledge base:
+
+* If it’s not raining, Hagrid is outside.
+* Either Hagrid or Dumbledore is present (but not both).
+* Hagrid is observed.
+
+The script checks whether the knowledge base entails that Hagrid is present:
+
+```bash
+python harrison.py
+```
+
+Expected output:
+
+```
+True
+```
+
+---
+
+##  How It Works
+
+* The model checker enumerates all possible truth assignments for symbols.
+* It checks that whenever the **knowledge base** is true, the **query** is also true.
+* If so, we say the knowledge base *entails* the query.
+
+---
+
+##  Use Cases
+
+* Learn **propositional logic** and **model checking**.
+* Practice **knowledge representation** and reasoning.
+* Explore AI concepts from courses like **CS50 AI**.
+
+---
+
+##  Future Improvements
+
+* Add support for multiple knowledge bases in one run.
+* Implement **resolution-based reasoning**.
+* Add CLI or GUI for interactive logic puzzles.
+
+---
+
+##  License
+
+This project is licensed under the **MIT License**.
+
+
 
