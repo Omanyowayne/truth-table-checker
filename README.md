@@ -31,10 +31,10 @@ logic/
 
 Getting Started
 1. Clone the repository
-git clone https://github.com/your-username/logic-model-checker.git
+git clone https://github.com/your-username/truth-table-checker.git
 cd logic-model-checker
 
-2. Run with Python
+3. Run with Python
 
 This project requires Python 3.7+.
 You can test it directly in the Python REPL or create your own script.
