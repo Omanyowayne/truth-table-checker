@@ -1,66 +1,84 @@
-Logic Model Checker
+# Logic Model checker
 
-A Python implementation of propositional logic with model checking to evaluate logical sentences and test entailment.
+**A Python implementation of propositional logic with model checking to evaluate logical sentences and test entailment.**
 
-✨ Features
+---
 
-Define logical sentences using:
+## ✨ Features
 
-Symbol (atomic propositions)
+* Define logical sentences using:
 
-Not (negation)
+  * **Symbol** (atomic propositions)
+  * **Not** (negation)
+  * **And** (conjunction)
+  * **Or** (disjunction)
+  * **Implication** (if–then)
+  * **Biconditional** (if and only if)
+* Evaluate sentences against a **model** (truth assignments).
+* Perform **entailment checking** using truth table enumeration.
+* Automatically extract all symbols in a logical expression.
+* Pretty-print formulas with logical operators (`¬`, `∧`, `∨`, `=>`, `<=>`).
 
-And (conjunction)
+---
 
-Or (disjunction)
+## 📂 Project Structure
 
-Implication (if–then)
-
-Biconditional (if and only if)
-
-Evaluate sentences against a model (truth assignments).
-
-Perform entailment checking using truth table enumeration.
-
-Automatically extract all symbols in a logical expression.
-
-Pretty-print formulas with logical operators (¬, ∧, ∨, =>, <=>).
-
-Project Structure
+```
 logic/
 │── logic.py         # Core implementation (Sentence classes + model_check)
 │── README.md        # Documentation
+```
 
-Getting Started
-1. Clone the repository
-git clone https://github.com/your-username/truth-table-checker.git
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/logic-model-checker.git
 cd logic-model-checker
+```
 
-3. Run with Python
+### 2. Run with Python
 
-This project requires Python 3.7+.
+This project requires **Python 3.7+**.
 You can test it directly in the Python REPL or create your own script.
 
-Usage Examples
-Example 1: Defining Symbols
+---
+
+## Usage Examples
+
+### Example 1: Defining Symbols
+
+```python
 from logic import Symbol, Not, And, Or, Implication, Biconditional, model_check
 
 # Define propositional symbols
 P = Symbol("P")
 Q = Symbol("Q")
+```
 
-Example 2: Creating Sentences
+### Example 2: Creating Sentences
+
+```python
 # Logical sentence: (P ∧ Q)
 sentence = And(P, Q)
 print(sentence.formula())   # Output: (P) ∧ (Q)
+```
 
-Example 3: Evaluating with a Model
+### Example 3: Evaluating with a Model
+
+```python
 # Model: P = True, Q = False
 model = {"P": True, "Q": False}
 
 print(sentence.evaluate(model))  # Output: False
+```
 
-Example 4: Model Checking (Entailment)
+### Example 4: Model Checking (Entailment)
+
+```python
 # Knowledge base: P => Q
 knowledge = Implication(P, Q)
 
@@ -69,35 +87,38 @@ query = Or(Not(P), Q)
 
 # Check if KB entails query
 print(model_check(knowledge, query))  # Output: True
+```
 
-How It Works
+---
 
-The model checker works by:
+## How It Works
 
-Collecting all symbols in the knowledge base and query.
+The **model checker** works by:
 
-Enumerating all possible truth assignments (models).
+1. Collecting all symbols in the knowledge base and query.
+2. Enumerating all possible truth assignments (models).
+3. Ensuring that **if the knowledge base is true in a model, the query is also true** in that model.
+4. Returning `True` if the query is entailed, otherwise `False`.
 
-Ensuring that if the knowledge base is true in a model, the query is also true in that model.
+---
 
-Returning True if the query is entailed, otherwise False.
+## Example Use Cases
 
-Example Use Cases
+* Learning **propositional logic** and **truth tables**.
+* Practicing **knowledge representation** (AI/logic courses).
+* Building a base for **AI reasoning systems**.
 
-Learning propositional logic and truth tables.
+---
 
-Practicing knowledge representation (AI/logic courses).
+## Future Improvements
 
-Building a base for AI reasoning systems.
+* Support multiple sentences in the knowledge base.
+* Implement **resolution-based inference**.
+* Add a simple **command-line interface (CLI)** for interactive use.
 
-Future Improvements
+---
 
-Support multiple sentences in the knowledge base.
+## License
 
-Implement resolution-based inference.
+This project is open-source and available under the **MIT License**.
 
-Add a simple command-line interface (CLI) for interactive use.
-
-License
-
-This project is open-source and available under the MIT License.
